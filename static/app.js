@@ -1,5 +1,6 @@
 const BASE_URL = "http://localhost:5000/api";
 
+// create HTML structure with cupcake data
 function generateDIV(cupcake) {
   return `
 <div class="col-sm" data-cupcake-id=${cupcake.id}>
@@ -24,9 +25,6 @@ async function showCupcakesHTML() {
     console.log(response.data)
 }
 
+// on load
 $(showCupcakesHTML);
 
-$( "#add-cupcake-form" ).submit(function( event ) {
-  console.log("FORM SUBMITTED:", event);
-  event.preventDefault();
-});

@@ -15,7 +15,7 @@
   <h1 class="display-2 text-center">Add Cupcake</h1>
   <div class="row justify-content-center">
       <div class="col-md-8">
-          <form id="add-cupcake-form" action="/api/cupcakes" method="POST">
+          <form action="/api/cupcakes" method="POST">
               {{ form.hidden_tag() }}
               {% for field in form
                       if field.widget.input_type != 'hidden' %}

@@ -61,7 +61,9 @@ def create_cupcake():
         db.session.add(cupcake)
         db.session.commit()
 
-        return (jsonify(cupcake=cupcake.serialize()), 201)
+        # return (jsonify(cupcake=cupcake.serialize()), 201)
+        return redirect('/')
+
 
     else:
         return redirect('/')
