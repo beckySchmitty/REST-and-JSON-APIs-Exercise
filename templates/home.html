@@ -1,31 +1,43 @@
 {% extends 'base.html' %}
-{% block title %} Home {% endblock %}
+{% block title %} Home - Cupcakes {% endblock %}
 {% block content %}
 
 
       <div class="container">
-        <h1 class="display-3 text-center">Pets</h1>
-        <div class="row">
-
-            {% for pet in pets %}
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src={{pet.photo_url() }} alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">{{pet.name}}</h5>
-                      {% if pet.available %}
-                      <p class="card-text"><strong>Available</strong></p>
-                      {% else %}
-                      <p class="card-text">Not Available</p>
-                      {% endif %}
-                      <a href="/{{pet.id}}" class="btn btn-success">Edit</a>
-
-                    </div>
-                  </div>
+          <h1>Cupcakes</h1>
+              <div class="row" id="cupcakes-list">
               </div>
-            {% endfor %}
-
-        </div>
       </div>
+
+<hr>
+
+<div class="container">
+  <h1 class="display-2 text-center">Add Cupcake</h1>
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <form id="add-cupcake-form" action="/api/cupcakes" method="POST">
+              {{ form.hidden_tag() }}
+              {% for field in form
+                      if field.widget.input_type != 'hidden' %}
+              <div class="form-group">
+                  {{field.label}}
+                  {{field (class_="form-control")}}
+              </div>
+              <div>
+                  <span>
+                      {% if field.errors %}
+                        {% for error in field.errors %}
+                            <b class="text-danger">{{ error }}</b>
+                        {% endfor %}
+                      {% endif %}
+                    </span>
+              {% endfor %}
+              </div>
+              <button class="btn btn-primary">Add</button>
+              <a class="btn btn-danger" href="/">Go back</a>
+          </form>
+      </div>
+  </div>
+</div>
 
 {% endblock %}
